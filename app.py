@@ -18,9 +18,31 @@ def about():
     return render_template("about.html")
 
 
+@app.route("/placeholder")
+def placeholder():
+    return render_template("placeholder.html")
+
+
+@app.route("/legal")
+def legal():
+    return render_template("legal.html")
+
+
+@app.route("/contact")
+def contact():
+    return render_template("contact.html")
+
+
+@app.route("/privacypolicy")
+def privacypolicy():
+    return render_template("privacypolicy.html")
+
+
+"""
 @app.route("/search/<zipcode>", methods=("POST",))
 def search(zipcode=0):
     return f"searched {zipcode}"
+"""
 
 
 if __name__ == "__main__":
