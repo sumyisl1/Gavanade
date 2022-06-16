@@ -1,7 +1,7 @@
 from flask import Flask
-from flask import render_template
+from flask import render_template, request, flash, redirect, url_for
 
-# from flask import redirect, url_for, request, g, session, flash
+# from flask import g, session
 # import requests
 
 app = Flask(__name__)
@@ -38,11 +38,21 @@ def privacypolicy():
     return render_template("privacypolicy.html")
 
 
-"""
-@app.route("/search/<zipcode>", methods=("POST",))
-def search(zipcode=0):
-    return f"searched {zipcode}"
-"""
+@app.route("/search", methods=("POST",))
+def search():
+    zipcode = request.form["zipcode"]
+    try:
+        zipcode = int(zipcode)
+        if 501 <= zipcode <= 99950:
+            # handle zip codes
+            flash("you have entered a valid zipcode")
+        else:
+            zipcode = -1
+    except BaseException:
+        zipcode = -1
+
+    flash(f"{zipcode}")
+    return redirect(url_for("home"))
 
 
 if __name__ == "__main__":
