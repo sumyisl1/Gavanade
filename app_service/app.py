@@ -37,6 +37,9 @@ def contact():
 def privacypolicy():
     return render_template("privacypolicy.html")
 
+@app.route("/gasprices")
+def gasprices():
+    return render_template("gasprices.html") 
 
 @app.route("/search", methods=("POST",))
 def search():
