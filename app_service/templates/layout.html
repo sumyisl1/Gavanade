@@ -1,31 +1,26 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-  <title>Gavanade</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
-</head>
+  <head>
+    <title>Gavanade</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+  </head>
 
-<body>
-  <header>
-    <div class="container">
-      <h1 class="logo">Gavanade</h1>
-      <strong>
-        <nav>
+  <body>
+    <header>
+      <div class="container">
+        <img src="static/Gavanade-Logo.png" alt="Gavanade Logo" class="logo" style="width:300px"/>
+        <strong><nav>
           <ul class="menu">
             <li><a href="{{ url_for('home') }}">Home</a></li>
             <li><a href="{{ url_for('about') }}">About Us</a></li>
-            <li><a href="{{ url_for('placeholder') }}">Placeholder1</a></li>
+            <li><a href="{{ url_for('gasprices') }}">Gas Prices</a></li>
             <li><a href="{{ url_for('placeholder') }}">Placeholder2</a></li>
             <li><a href="{{ url_for('placeholder') }}">Placeholder3</a></li>
           </ul>
-          <form action="{{url_for('search')}}" method="post">
-            <input type="text" id="zipcode" name="zipcode" placeholder="Zipcode">
-          </form>
-        </nav>
-      </strong>
-    </div>
-  </header>
+        </nav></strong>
+      </div>
+    </header>
 
 
   <ul class=flashes>
@@ -39,10 +34,14 @@
     {% endblock %}
   </div>
 </body>
-<footer class="footer">
-  <h5><a href="{{ url_for('legal') }}">Legal Notice</h5>
-  <h5><a href="{{ url_for('contact') }}">Contact Us</h5>
-  <h5><a href="{{ url_for('privacypolicy') }}">Privacy Policy</h5>
+<footer>
+  <div class="row">
+  <ul>
+    <li><a target="_blank" href="{{ url_for('legal') }}" title="Legal Notice">Legal Notice</li>
+    <li><a target="_blank" href="{{ url_for('contact') }}" title="Contact">Contact Us</li>
+    <li style="border-right: none;"><a target="_blank" href="{{ url_for('privacypolicy') }}" title="Privacy Policy">Privacy Policy</li>
+  </ul>
+</div>
 </footer>
 
 </html>
