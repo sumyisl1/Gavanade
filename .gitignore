@@ -1,2 +1,4 @@
 app_service/.venv
 app_service/__pycache__
+app_service/.vscode
+.vscode
