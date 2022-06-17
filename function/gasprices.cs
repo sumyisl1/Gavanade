@@ -8,11 +8,11 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 
-namespace Company.Function
+namespace gavanade.function
 {
-    public static class testfunction
+    public static class gasprices
     {
-        [FunctionName("testfunction")]
+        [FunctionName("gasprices")]
         public static async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)] HttpRequest req,
             ILogger log)
@@ -25,9 +25,7 @@ namespace Company.Function
             dynamic data = JsonConvert.DeserializeObject(requestBody);
             name = name ?? data?.name;
 
-            string responseMessage = string.IsNullOrEmpty(name)
-                ? "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response."
-                : $"Hello, {name}. This HTTP triggered function executed successfully.";
+            string responseMessage = "gas prices function";
 
             return new OkObjectResult(responseMessage);
         }
