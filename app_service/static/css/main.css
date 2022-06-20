@@ -1,7 +1,7 @@
 
 body {
   padding: 0;
-  font-family: "Quicksand", Helvetica, Arial, sans-serif;
+  font-family: LatoBold, Helvetica, Arial, sans-serif;
   background-color: #B7E1B0;
   color: #38502C;
   margin: 0;
@@ -81,7 +81,7 @@ footer ul li {
   padding: 0 15px;
 }
 
-div.row {
+.row {
   display:block;
   position:relative;
   line-height: 2;
@@ -100,7 +100,7 @@ div.row {
   justify-content: space-between;
 }
 
-div.mission-block {
+.mission-block {
   
   padding: 100px 0 200px 0;
   color: #B7E1B0;
@@ -111,19 +111,37 @@ div.mission-block {
   
 }
 
-div.mission-text {
-  margin-left: 100px;
+.mission-text {
+  margin-left: 80px;
   color: white !important;
   font-family: ZenMaruGothic;
+  line-height: 20px;
 }
 
-div.project-block {
+.project-block {
   background-color:#38502C;
-  padding: 100px 50px 100px 50px;
-  height: 200px;
+  padding: 50px 50px 50px 50px;
+  height: 250px;
+  column-gap: 50px;
+  display: grid;
+  grid-template-columns: auto auto auto;
+
 }
 
-div.about {
+.project {
+  background-color:gainsboro !important;
+  text-align: center;
+  display: inline-block;
+  -webkit-transition: -webkit-transform 1s;
+  transition: transform 1s;
+}
+
+.project:hover {
+  --webkit-transform: scale(1.2);
+  transform: scale(1.2);
+}
+
+.about {
   padding: 10px 0 30px 0;
   -webkit-border-radius: 6px;
      -moz-border-radius: 6px;
@@ -139,6 +157,7 @@ h2 {
   font-size: 1.5em;
   font-weight: normal;
   font-family: ZenMaruGothic;
+  margin-left: 90px;
 }
 h3 {
   font-size: 1.7em;
@@ -156,4 +175,9 @@ h3 {
 @font-face {
   font-family: ZenMaruGothicBold;
   src: url(fonts/ZenMaruGothic-Bold.ttf)
+}
+
+@font-face {
+  font-family: LatoBold;
+  src: url(fonts/Lato-Bold.ttf)
 }
