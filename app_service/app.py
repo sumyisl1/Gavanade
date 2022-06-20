@@ -37,6 +37,9 @@ def contact():
 def privacypolicy():
     return render_template("privacypolicy.html")
 
+@app.route("/gasprices")
+def gasprices():
+    return render_template("gasprices.html") 
 
 @app.route("/search", methods=("POST",))
 def search():
@@ -52,7 +55,7 @@ def search():
         zipcode = -1
 
     flash(f"{zipcode}")
-    return redirect(url_for("home"))
+    return redirect(url_for("gasprices"))
 
 
 if __name__ == "__main__":

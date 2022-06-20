@@ -1,103 +1,159 @@
+
 body {
-    margin: 0;
-    padding: 0;
-    font-family: "Quicksand", Helvetica, Arial, sans-serif;
-    background-color: #272E6B;
-    color: #B4BBF6;
-  }
-  /*
-   * Formatting the header area
-   */
-  header {
-    height: 80px;
-    width: 100%;
-    opacity: .9;
-    margin-bottom: 10px;
-    color: #B4BBF6;
-  }
+  padding: 0;
+  font-family: "Quicksand", Helvetica, Arial, sans-serif;
+  background-color: #B7E1B0;
+  color: #38502C;
+  margin: 0;
+  min-height: 100%;
 
-  header a.visited {
-    color: #B4BBF6;
-  }
 
-  header a {
-    color: #B4BBF6;
-    font-size: 1.5em;
-    margin-right: 0;
-  }
+}
+
+a:link, a:visited, a:hover, a:active {
+  text-decoration: none;
+}
+
+/*
+ * Formatting the header area
+ */
+header {
+  height: 80px;
+  opacity: .9;
+  margin-bottom: 10px;
+  margin-left: 0px;
+  position: static;
+  display: inline;
+}
+
+header a.visited {
+  color: #38502C;
+}
+
+header a {
+  color: #38502C;
+  font-size: 1.5em;
+}
+
+header img {
+  position: relative;
+  width: 35%;
+  float:left;
+}
+ /*
+ * Navigation
+ */
+.menu {
+  justify-content: right;
+  display: inline-flex;
+  flex-wrap: nowrap;
+  margin-right: 20px;
+}
+.menu li {
+  display: inline-flex;
+  flex-wrap: nowrap;
+}
+.menu li + li {
+  margin-left: 35px;
+}
+.menu li a {
+  text-decoration: none;
+}
+
+ /*
+ * Footer content
+ */
+footer {
+  text-align: center;
+  bottom: 0;
+}
+
+footer ul li a, a:visited {
+  color: #38502C;
+  text-transform: uppercase;
+  font-size: 18px;
+}
+
+footer ul li {
+  list-style:none;
+  display:inline;
+  border-right: 1px solid #38502C;
+  padding: 0 15px;
+}
+
+div.row {
+  display:block;
+  position:relative;
+  line-height: 2;
+  margin: 25px auto;
+  width: 100%;
+}
+
+.centercontainer {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+.headcontainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+div.mission-block {
   
-  header h1.logo {
-    margin-top: 0;
-    margin-left: 0;
-    font-size: 3em;
-    color: #B4BBF6;
-    text-transform: uppercase;
-    float: left;
-  }
-  header h1.logo:hover {
-    color: #B4BBF6;
-    text-decoration: none;
-  }
-  /*
-   * Centering the body content
-   */
-  .container {
-    width: 1200px;
-    margin: 0 auto;
-  }
-  div.home {
-    padding: 10px 0 30px 0;
-    /* background-color: #E6E6FA; */
-    -webkit-border-radius: 6px;
-       -moz-border-radius: 6px;
-            border-radius: 6px;
-  }
-  div.about {
-    padding: 10px 0 30px 0;
-    /* background-color: #E6E6FA; */
-    -webkit-border-radius: 6px;
-       -moz-border-radius: 6px;
-            border-radius: 6px;
-  }
-  h2 {
-    font-size: 3em;
-    margin-top: 40px;
-    text-align: center;
-    letter-spacing: -2px;
-  }
-  h3 {
-    font-size: 1.7em;
-    font-weight: 100;
-    margin-top: 30px;
-    text-align: center;
-    letter-spacing: -1px;
-  }
-  .menu {
-    float: right;
-    margin-top: 8px;
-  }
-  .menu li {
-    display: inline;
-  }
-  .menu li + li {
-    margin-left: 35px;
-  }
-  .menu li a {
-    text-decoration: none;
-  }
+  padding: 100px 0 200px 0;
+  color: #B7E1B0;
+  background-image: url('../mining-for-fuel.jpeg') !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+  
+}
 
-  footer {
-    color: #B4BBF6;
-    text-align: center;
-    margin-bottom: 10px;
-    float: left;
-    width: 33.33%;
-    padding: 5px;
-  }
+div.mission-text {
+  margin-left: 100px;
+  color: white !important;
+  font-family: ZenMaruGothic;
+}
 
-  footer a {
-    color: #B4BBF6;
-  }
-  footer a:visited {
-    color: #B4BBF6;
-  }
+div.project-block {
+  background-color:#38502C;
+  padding: 100px 50px 100px 50px;
+  height: 200px;
+}
+
+div.about {
+  padding: 10px 0 30px 0;
+  -webkit-border-radius: 6px;
+     -moz-border-radius: 6px;
+          border-radius: 6px;
+}
+
+h1 {
+  font-family: ZenMaruGothicBold;
+  font-size: 2.5em;
+}
+
+h2 {
+  font-size: 1.5em;
+  font-weight: normal;
+  font-family: ZenMaruGothic;
+}
+h3 {
+  font-size: 1.7em;
+  font-weight: 100;
+  margin-top: 30px;
+  text-align: center;
+  letter-spacing: -1px;
+}
+
+@font-face {
+  font-family: ZenMaruGothic;
+  src: url(fonts/ZenMaruGothic-Regular.ttf);
+}
+
+@font-face {
+  font-family: ZenMaruGothicBold;
+  src: url(fonts/ZenMaruGothic-Bold.ttf)
+}
