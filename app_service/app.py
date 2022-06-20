@@ -55,7 +55,7 @@ def search():
         zipcode = -1
 
     flash(f"{zipcode}")
-    return redirect(url_for("home"))
+    return redirect(url_for("gasprices"))
 
 
 if __name__ == "__main__":
