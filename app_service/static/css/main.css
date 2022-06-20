@@ -1,8 +1,13 @@
+
 body {
   padding: 0;
   font-family: "Quicksand", Helvetica, Arial, sans-serif;
   background-color: #B7E1B0;
   color: #38502C;
+  margin: 0;
+  min-height: 100%;
+
+
 }
 
 a:link, a:visited, a:hover, a:active {
@@ -16,7 +21,8 @@ header {
   height: 80px;
   opacity: .9;
   margin-bottom: 10px;
-  position: relative;
+  margin-left: 0px;
+  position: static;
   display: inline;
 }
 
@@ -32,55 +38,20 @@ header a {
 header img {
   position: relative;
   width: 35%;
+  float:left;
 }
-
-/*
- * Centering the body content
- */
-.container {
-  width: 1200px;
-  margin: 0 auto;
-}
-
-div.home {
-  padding: 100px 0 300px 0;
-  color: #B7E1B0;
-  background-image: url('../mining-for-fuel.jpeg') !important;
-  background-position: center !important;
-  background-repeat: no-repeat !important;
-  background-size: cover !important;
-}
-div.about {
-  padding: 10px 0 30px 0;
-  /* background-color: #E6E6FA; */
-  -webkit-border-radius: 6px;
-     -moz-border-radius: 6px;
-          border-radius: 6px;
-}
-h2 {
-  font-size: 3em;
-  margin-top: 40px;
-  text-align: center;
-  letter-spacing: -2px;
-}
-h3 {
-  font-size: 1.7em;
-  font-weight: 100;
-  margin-top: 30px;
-  text-align: center;
-  letter-spacing: -1px;
-}
-
  /*
  * Navigation
  */
 .menu {
-  width: 65%;
-  float: right;
-  margin-top: 0;
+  justify-content: right;
+  display: inline-flex;
+  flex-wrap: nowrap;
+  margin-right: 20px;
 }
 .menu li {
-  display: inline;
+  display: inline-flex;
+  flex-wrap: nowrap;
 }
 .menu li + li {
   margin-left: 35px;
@@ -112,8 +83,77 @@ footer ul li {
 
 div.row {
   display:block;
-  position:fixed;
+  position:relative;
   line-height: 2;
   margin: 25px auto;
   width: 100%;
+}
+
+.centercontainer {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+.headcontainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+div.mission-block {
+  
+  padding: 100px 0 200px 0;
+  color: #B7E1B0;
+  background-image: url('../mining-for-fuel.jpeg') !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+  
+}
+
+div.mission-text {
+  margin-left: 100px;
+  color: white !important;
+  font-family: ZenMaruGothic;
+}
+
+div.project-block {
+  background-color:#38502C;
+  padding: 100px 50px 100px 50px;
+  height: 200px;
+}
+
+div.about {
+  padding: 10px 0 30px 0;
+  -webkit-border-radius: 6px;
+     -moz-border-radius: 6px;
+          border-radius: 6px;
+}
+
+h1 {
+  font-family: ZenMaruGothicBold;
+  font-size: 2.5em;
+}
+
+h2 {
+  font-size: 1.5em;
+  font-weight: normal;
+  font-family: ZenMaruGothic;
+}
+h3 {
+  font-size: 1.7em;
+  font-weight: 100;
+  margin-top: 30px;
+  text-align: center;
+  letter-spacing: -1px;
+}
+
+@font-face {
+  font-family: ZenMaruGothic;
+  src: url(fonts/ZenMaruGothic-Regular.ttf);
+}
+
+@font-face {
+  font-family: ZenMaruGothicBold;
+  src: url(fonts/ZenMaruGothic-Bold.ttf)
 }
