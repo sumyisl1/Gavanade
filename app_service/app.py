@@ -1,11 +1,13 @@
 from flask import Flask
 from flask import render_template, request, flash, redirect, url_for
 
+import requests
+
 # from flask import g, session
-# import requests
 
 app = Flask(__name__)
 app.secret_key = b"U2hI]w1dKiD8NKGgxTUMaw5Deftwr3K7"
+function_url = "https://gavanade-function.azurewebsites.net/api"
 
 
 @app.route("/")
@@ -20,6 +22,10 @@ def about():
 
 @app.route("/placeholder")
 def placeholder():
+
+    response = requests.get(f"{function_url}/database?name=testname")
+    flash(response.text)
+
     return render_template("placeholder.html")
 
 
