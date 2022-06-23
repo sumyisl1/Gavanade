@@ -7,7 +7,7 @@ import requests
 
 app = Flask(__name__)
 app.secret_key = b"U2hI]w1dKiD8NKGgxTUMaw5Deftwr3K7"
-function_url = "https://gavanade-function.azurewebsites.net/api"
+function_url = "https://gavanade-function-windows.azurewebsites.net/api"
 
 
 @app.route("/")
@@ -43,28 +43,48 @@ def contact():
 def privacypolicy():
     return render_template("privacypolicy.html")
 
+
 @app.route("/map")
 def map():
     return render_template("map.html")
+
 
 @app.route("/zip")
 def zip():
     return render_template("zip.html")
 
-@app.route("/search", methods=("POST",))
-def search():
+
+@app.route("/search/zipcode", methods=("POST",))
+def search_zipcode():
     zipcode = request.form["zipcode"]
     try:
         zipcode = int(zipcode)
-        if 501 <= zipcode <= 99950:
-            # handle zip codes
-            flash("you have entered a valid zipcode")
+        if 500 <= zipcode <= 99950:
+            response = requests.get(
+                f"{function_url}/gasprices?zipcode={zipcode}",
+            )
+            flash(response.text)
         else:
-            zipcode = -1
+            zipcode = -2
     except BaseException:
-        zipcode = -1
+        zipcode = -2
 
-    flash(f"{zipcode}")
+    return redirect(url_for("zip"))
+
+
+@app.route("/search/coordinates", methods=("GET", "POST"))
+def search_coordinates():
+    lat = request.args.get("latitude", type=float)
+    lon = request.args.get("longitude", type=float)
+    try:
+        response = requests.get(
+            f"{function_url}/gasprices?latitude={lat}&longitude={lon}",
+        )
+        flash(response.text)
+    except BaseException:
+        lat = -2
+        lon = -2
+
     return redirect(url_for("zip"))
 
 
