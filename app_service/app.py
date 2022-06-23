@@ -71,7 +71,6 @@ def search_zipcode():
 
     return redirect(url_for("zip"))
 
-
 @app.route("/search/coordinates", methods=("GET", "POST"))
 def search_coordinates():
     lat = request.args.get("latitude", type=float)
@@ -85,7 +84,7 @@ def search_coordinates():
         lat = -2
         lon = -2
 
-    return redirect(url_for("zip"))
+    return redirect(url_for("map"))
 
 
 if __name__ == "__main__":
