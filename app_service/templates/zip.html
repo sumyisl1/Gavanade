@@ -1,10 +1,12 @@
 {% extends "layout.html" %}
+
 {% block content %}
-  <div class="gassearch centercontainer">
+<div class="gassearch centercontainer">
     <h1>Gas Price Search</h1>
-    <p> Search for gas prices in your area based on your zipcode</p>
+    <p> Search for gas prices in your area based on your zipcode, or find a location on the map!</p>
     <form action="{{url_for('search')}}" method="post" class="zipsearch">
         <input type="text" id="zipcode" name="zipcode" placeholder="Zipcode">
+        <button type="submit" name="search">Search</button>
       </form>
   </div>
-{% endblock %}
+  {% endblock %}
