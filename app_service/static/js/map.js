@@ -1,5 +1,8 @@
-var map = L.map('map').fitWorld();
+var map = L.map('map', {maxBoundsViscosity: 1}).fitBounds([[23,-125],[50,-65]]);
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+bounds: [[23,-125],[50,-65]],
+center: [35, -100],
+
 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
 id: 'mapbox.streets',
 accessToken: 'pk.eyJ1Ijoia2F5bGllbmF5bG9yIiwiYSI6ImNsNHB4ZnJsYjBsem4zZHBhcmUwejB5ejIifQ.mNLOIprK0Ui7NrT36JRkcg'}).addTo(map);
@@ -18,5 +21,5 @@ map.on('click',
         var lat = coord.lat;
         var lng = coord.lng;
         marker = L.marker(e.latlng, {draggable:'true'}).addTo(map)
-        .bindPopup('Create an entry <a href="/search/coordinates?latitude='+lat+'&longitude='+lng+'"> here</a>').openPopup();
+        .bindPopup('Search gas price <a href="/search/coordinates?latitude='+lat+'&longitude='+lng+'"> here</a>').openPopup();
 });

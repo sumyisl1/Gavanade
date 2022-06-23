@@ -75,6 +75,8 @@ def search_zipcode():
 def search_coordinates():
     lat = request.args.get("latitude", type=float)
     lon = request.args.get("longitude", type=float)
+    lon = (lon + 180) % 360 - 180
+
     try:
         response = requests.get(
             f"{function_url}/gasprices?latitude={lat}&longitude={lon}",
