@@ -71,13 +71,6 @@ def search_zipcode():
 
     return redirect(url_for("zip"))
 
-@app.route('/locationform')
-def locationform():
-  longitude = request.args.get('longitude', type=float)
-  latitude = request.args.get('latitude', type=float)
-
-  return render_template("locationform.html", longitude=longitude, latitude=latitude)
-
 @app.route("/search/coordinates", methods=("GET", "POST"))
 def search_coordinates():
     lat = request.args.get("latitude", type=float)
