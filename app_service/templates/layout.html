@@ -1,9 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
   <head>
     <title>Gavanade</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% block head %}
+    {% endblock %}
   </head>
 
   <body>
@@ -12,12 +15,20 @@
         <img src="static/Gavanade-Logo.png" alt="Gavanade Logo" class="logo" style="width:300px"/>
         <strong>
           <nav>
-          <ul class="menu">
-            <li><a href="{{ url_for('home') }}">Home</a></li>
-            <li><a href="{{ url_for('about') }}">About Us</a></li>
-            <li><a href="{{ url_for('gasprices') }}">Gas Prices</a></li>
-            <li><a href="{{ url_for('placeholder') }}">Placeholder2</a></li>
-            <li><a href="{{ url_for('placeholder') }}">Placeholder3</a></li>
+          <div class="menu">
+            <a href="{{ url_for('home') }}">Home</a></li>
+            <a href="{{ url_for('about') }}">About Us</a></li>
+            <div class="dropdown">
+              <button class="dropbtn">Gas Prices
+                <i class="fa fa-caret down"></i>
+              </button>
+              <div class="dropdown-content">
+                <a href="{{ url_for('zip') }}">Search by Zipcode</a></li>
+                <a href="{{ url_for('map') }}">Search by Map</a></li>
+              </div>
+            </div>
+            <a href="{{ url_for('placeholder') }}">Placeholder</a></li>
+            <a href="{{ url_for('placeholder') }}">Placeholder</a></li>
           </ul>
         </nav></strong>
       </div>
