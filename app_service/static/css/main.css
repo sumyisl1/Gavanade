@@ -23,6 +23,7 @@ header {
   margin-left: 0px;
   position: static;
   margin-bottom: 30px;
+  z-index: 9999;
   margin-top: 10px;
 }
 
@@ -39,6 +40,13 @@ header img {
   position: relative;
   float:left;
 }
+
+.headcontainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
  /*
  * Navigation
  */
@@ -46,7 +54,7 @@ header img {
   /* justify-content: center; */
   /* flex-wrap: nowrap; */
   /* list-style: none; */
-  width: 800px;
+  width: 550px;
   float: right;
 }
 
@@ -96,7 +104,6 @@ header img {
   background-color: #38502C;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
 }
 
 .dropdown-content a {
@@ -148,22 +155,23 @@ footer ul li {
   width: 100%;
 }
 
+/*
+* Center content of each page
+*/
 .centercontainer {
   width: 1200px;
   margin: 0 auto;
 }
 
-.headcontainer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
+/*
+ * Home page content
+*/
 
 .mission-block {
   
   padding: 100px 0 200px 0;
   color: #B7E1B0;
-  background-image: url('../mining-for-fuel.jpeg') !important;
+  background-image: url('../pictures/mining-for-fuel.jpeg') !important;
   background-position: center !important;
   background-repeat: no-repeat !important;
   background-size: cover !important;
@@ -201,6 +209,10 @@ footer ul li {
   transform: scale(1.2);
 }
 
+/*
+* About page contents
+*/
+
 .about {
   padding: 10px 0 30px 0;
   -webkit-border-radius: 6px;
@@ -208,9 +220,60 @@ footer ul li {
           border-radius: 6px;
 }
 
+/*
+ * flash messages
+*/
+.avg {
+  font-size: 1.25em;
+}
+.flashes {
+  list-style: none;
+  padding-inline-start: 10px;
+  /* padding-top: 10px; */
+}
+
+/*
+ * Zipcode Search Page
+ */
+
+ .gassearch {
+    background-image: url('../pictures/car-refuel.jpeg');
+    display: block;
+    background-size: cover;
+    height: 600px;
+    padding-top: 50px;
+    padding-left: 50px;
+    width: auto;
+ }
+
+ .searchcontainer {
+    display: block;
+    background-color: white;
+    opacity: 90%;
+    text-align: left;
+    position: absolute;
+    top: 120px;
+    padding: 10px 25px 50px 20px;
+    border: 1px solid #38502C;
+    border-radius: 25px;
+    z-index: 9999;
+ }
+
+ .mapresults {
+  display: none;
+  top: 120px;
+  opacity: 75%;
+  border-radius: 15px;
+  padding: 25px;
+ }
+ 
+/*
+* Basic header formatting
+*/
+
 h1 {
   font-family: ZenMaruGothicBold;
-  font-size: 2.5em;
+  /* font-size: 2.5em; */
 }
 
 h2 {
@@ -227,6 +290,10 @@ h3 {
   letter-spacing: -1px;
 }
 
+
+/*
+* Custom fonts
+*/
 @font-face {
   font-family: ZenMaruGothic;
   src: url(fonts/ZenMaruGothic-Regular.ttf);

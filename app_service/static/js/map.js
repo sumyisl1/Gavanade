@@ -24,7 +24,7 @@ map.on('click',
         var popup = L.popup()
             .setLatLng(e.latlng)
             .setContent('<p>You are here!</p>');
-        var coord = e.latlng; // no need for toString()
+        var coord = e.latlng; 
         var lat = coord.lat;
         var lng = coord.lng;
         marker = L.marker(e.latlng, { draggable: 'true' }).addTo(map)

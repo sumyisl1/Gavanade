@@ -1,12 +1,20 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<div class="gassearch centercontainer">
-    <h1>Gas Price Search</h1>
-    <p> Search for gas prices in your area based on your zipcode, or find a location on the map!</p>
-    <form action="{{url_for('search_zipcode')}}" method="post" class="zipsearch">
-        <input type="text" id="zipcode" name="zipcode" placeholder="Zipcode">
-        <button type="submit" name="search">Search</button>
-      </form>
+<div class="gassearch">
+    <div class = "searchcontainer">
+            <h1>Gas Price Search</h1>
+            <p> Search for gas prices in your area based on your zipcode</p>
+            <form action="{{url_for('search_zipcode')}}" method="post" class="zipsearch">
+                <input type="text" id="zipcode" name="zipcode" placeholder="Zipcode">
+                <button type="submit" name="search">Search</button>
+            </form>
+
+            <ul class=flashes>
+                {% for message in get_flashed_messages() %}
+                <li>The average gas price is {{ message }}</li>
+                {% endfor %}
+              </ul>
+    </div>
   </div>
   {% endblock %}
