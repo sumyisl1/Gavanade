@@ -12,7 +12,7 @@
   <body>
     <header>
       <div class="headcontainer">
-        <img src="static/Gavanade-Logo.png" alt="Gavanade Logo" class="logo" style="width:300px"/>
+        <img src="static/pictures/Gavanade-Logo.png" alt="Gavanade Logo" class="logo" style="width:300px"/>
         <strong>
           <nav>
           <div class="menu">
@@ -27,24 +27,19 @@
                 <a href="{{ url_for('map') }}">Search by Map</a></li>
               </div>
             </div>
-            <a href="{{ url_for('placeholder') }}">Placeholder</a></li>
-            <a href="{{ url_for('placeholder') }}">Placeholder</a></li>
+            <a href="{{ url_for('placeholder') }}">Alternative Fuel</a></li>
+            <a href="{{ url_for('placeholder') }}">Contact</a></li>
           </ul>
         </nav></strong>
       </div>
     </header>
 
-
-  <ul class=flashes>
-    {% for message in get_flashed_messages() %}
-    <li>{{ message }}</li>
-    {% endfor %}
-  </ul>
-
   <div class="container">
     {% block content %}
+    
     {% endblock %}
   </div>
+
 </body>
 <footer>
   <div class="row">
