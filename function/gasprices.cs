@@ -31,6 +31,13 @@ namespace gavanade.function
             double latitude = 0;
             double longitude = 0;
 
+            // strings for compiling into a result
+            string city = "", state = "", state_abbr = "";
+            string areaprice = "", stateprice = "", nationalprice = "";
+
+            int index = 0;
+            string searchstring = "", responseMessage = "";
+
             if (!string.IsNullOrEmpty(latitude_str))
             {
                 log.LogInformation("latitude passed");
@@ -48,36 +55,82 @@ namespace gavanade.function
                 var response = await client.GetAsync(
                     $"https://atlas.microsoft.com/search/address/reverse/json?api-version=1.0&query={latitude},{longitude}&subscription-key=QtkUpdIsoJvs1Di_m2zLOIe_lPCTQEdGUHnZZCTIQuU"
                 );
-                string responseMessage = await response.Content.ReadAsStringAsync();
-                string searchstring = "\"postalCode\":\"";
-                int index = responseMessage.IndexOf(searchstring) + searchstring.Length;
+                responseMessage = await response.Content.ReadAsStringAsync();
+
+                searchstring = "\"postalCode\":\"";
+                index = responseMessage.IndexOf(searchstring) + searchstring.Length;
                 zipcode_str = responseMessage.Substring(index);
                 zipcode_str = zipcode_str.Substring(0, zipcode_str.IndexOf("\""));
             }
-
+            else
+            {
+                client.DefaultRequestHeaders.Add("x-ms-client-id", "46f031d2-20fb-4ca3-b4f3-217ceeaa9d1a");
+                var response = await client.GetAsync(
+                    $"https://atlas.microsoft.com/search/address/json?api-version=1.0&query={zipcode_str}&countrySet=US&subscription-key=QtkUpdIsoJvs1Di_m2zLOIe_lPCTQEdGUHnZZCTIQuU"
+                );
+                responseMessage = await response.Content.ReadAsStringAsync();
+            }
             if (!string.IsNullOrEmpty(zipcode_str))
             {
                 log.LogInformation("zipcode passed");
                 Int32.TryParse(zipcode_str, out zipcode);
             }
+            if (zipcode == 0)
+            {
+                return new OkObjectResult("Error with the query,0,0,0,0,0");
+            }
+            searchstring = "\"countrySubdivision\":\"";
+            index = responseMessage.IndexOf(searchstring) + searchstring.Length;
+            state_abbr = responseMessage.Substring(index);
+            state_abbr = state_abbr.Substring(0, state_abbr.IndexOf("\""));
+
+            searchstring = "\"countrySubdivisionName\":\"";
+            index = responseMessage.IndexOf(searchstring) + searchstring.Length;
+            state = responseMessage.Substring(index);
+            state = state.Substring(0, state.IndexOf("\""));
+
+            searchstring = "\"municipality\":\"";
+            index = responseMessage.IndexOf(searchstring) + searchstring.Length;
+            city = responseMessage.Substring(index);
+            city = city.Substring(0, city.IndexOf("\""));
 
             if (zipcode != 0)
             {
                 var response = await client.GetAsync(
                     $"https://www.gasbuddy.com/home?search={zipcode}"
                 );
-                string responseMessage = await response.Content.ReadAsStringAsync();
+                responseMessage = await response.Content.ReadAsStringAsync();
 
-                string searchstring = "<span class=\"text__lg___1S7OO text__bold___1C6Z_ text__left___1iOw3 PriceTrends-module__priceHeader___fB9X9\">";
+                searchstring = "<span class=\"text__lg___1S7OO text__bold___1C6Z_ text__left___1iOw3 PriceTrends-module__priceHeader___fB9X9\">";
 
-                int index = responseMessage.IndexOf(searchstring) + searchstring.Length;
+                index = responseMessage.IndexOf(searchstring) + searchstring.Length;
                 string price = responseMessage.Substring(index);
                 index = price.IndexOf(searchstring) + searchstring.Length;
                 price = price.Substring(index);
                 price = price.Substring(0, price.IndexOf("<"));
-                result = price;
+                areaprice = price;
             }
 
+            if (!string.IsNullOrEmpty(state_abbr))
+            {
+                var response = await client.GetAsync(
+                    $"https://gasprices.aaa.com/?state={state_abbr}"
+                );
+                responseMessage = await response.Content.ReadAsStringAsync();
+
+                searchstring = "AAA National Average ";
+                index = responseMessage.IndexOf(searchstring) + searchstring.Length;
+                nationalprice = responseMessage.Substring(index);
+                nationalprice = nationalprice.Substring(0, nationalprice.IndexOf(" "));
+
+                searchstring = $"AAA {state} Avg. ";
+                index = responseMessage.IndexOf(searchstring) + searchstring.Length;
+                stateprice = responseMessage.Substring(index);
+                stateprice = stateprice.Substring(0, stateprice.IndexOf(" "));
+            }
+
+
+            result = $"{zipcode},{city},{state},{areaprice},{stateprice},{nationalprice}";
             return new OkObjectResult(result);
         }
     }

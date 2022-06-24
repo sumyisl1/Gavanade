@@ -22,10 +22,6 @@ def about():
 
 @app.route("/placeholder")
 def placeholder():
-
-    response = requests.get(f"{function_url}/database?name=testname")
-    flash(response.text)
-
     return render_template("placeholder.html")
 
 
@@ -70,6 +66,7 @@ def search_zipcode():
         zipcode = -2
 
     return redirect(url_for("zip"))
+
 
 @app.route("/search/coordinates", methods=("GET", "POST"))
 def search_coordinates():
