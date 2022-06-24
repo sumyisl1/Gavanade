@@ -3,8 +3,6 @@ from flask import render_template, request, flash, redirect, url_for
 
 import requests
 
-# from flask import g, session
-
 app = Flask(__name__)
 app.secret_key = b"U2hI]w1dKiD8NKGgxTUMaw5Deftwr3K7"
 function_url = "https://gavanade-function-windows.azurewebsites.net/api"
@@ -22,10 +20,6 @@ def about():
 
 @app.route("/placeholder")
 def placeholder():
-
-    response = requests.get(f"{function_url}/database?name=testname")
-    flash(response.text)
-
     return render_template("placeholder.html")
 
 
@@ -70,6 +64,7 @@ def search_zipcode():
         zipcode = -2
 
     return redirect(url_for("zip"))
+
 
 @app.route("/search/coordinates", methods=("GET", "POST"))
 def search_coordinates():

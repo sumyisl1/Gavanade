@@ -12,7 +12,16 @@
 
 {% block content %}
 
-<div id="map" style="padding: 0; margin: 0; height: 800px"></div>
+<div id="map" style="padding: 0; margin: 0; height: 700px"></div>
 <script src="{{ url_for('static', filename='js/map.js') }}">
 </script>
+
+<ul class=flashes>
+  {% for message in get_flashed_messages() %}
+  <div class="searchcontainer mapresults" style="display:block">
+    <li>The average gas price is {{ message }}</li>
+    {% endfor %}
+</ul>
+</div>
+
 {% endblock %}
