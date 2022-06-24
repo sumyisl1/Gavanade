@@ -18,7 +18,7 @@ a:link, a:visited, a:hover, a:active {
  * Formatting the header area
  */
 header {
-  height: 80px;
+  height: 90px;
   opacity: .9;
   margin-left: 0px;
   position: static;
@@ -38,7 +38,8 @@ header a {
 
 header img {
   position: relative;
-  float:left;
+  float:
+  left;
 }
 
 .headcontainer {
