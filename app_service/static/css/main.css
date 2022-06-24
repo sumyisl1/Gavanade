@@ -18,7 +18,7 @@ a:link, a:visited, a:hover, a:active {
  * Formatting the header area
  */
 header {
-  height: 90px;
+  height: 60px;
   opacity: .9;
   margin-left: 0px;
   position: static;
