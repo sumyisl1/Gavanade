@@ -18,13 +18,13 @@ a:link, a:visited, a:hover, a:active {
  * Formatting the header area
  */
 header {
-  height: 60px;
+  height: 80px;
   opacity: .9;
   margin-left: 0px;
   position: static;
   margin-bottom: 30px;
   z-index: 9999;
-  margin-top: 10px;
+  /* margin-top: 10px; */
 }
 
 header a:visited {
@@ -54,7 +54,7 @@ header img {
   /* justify-content: center; */
   /* flex-wrap: nowrap; */
   /* list-style: none; */
-  width: 550px;
+  /* width: 550px; */
   float: right;
 }
 
@@ -69,7 +69,7 @@ header img {
 
 .menu a {
   float: left;
-  font-size: 16px;
+  font-size: 20px;
   color: white;
   text-align: center;
   padding: 14px 16px;
@@ -82,7 +82,7 @@ header img {
 }
 
 .dropdown .dropbtn {
-  font-size: 16px;
+  font-size: 20px;
   border: none;
   outline: none;
   padding: 14px 16px;
