@@ -16,12 +16,18 @@
 <script src="{{ url_for('static', filename='js/map.js') }}">
 </script>
 
-<ul class=flashes>
+<div class=flashes>
   {% for message in get_flashed_messages() %}
-  <div class="searchcontainer mapresults" style="display:block">
-    <li>The average gas price is {{ message }}</li>
+  <div class="searchcontainer" style="display:block">
+    <img src="static/pictures/nav-icon.png" alt="Show/Hide Results" class="results-button" />
+    <div class= "mapresults">
+    {% set msg_split = message.split(",") %}
+    <h7>{{ msg_split[1] }}, {{ msg_split[2] }}</h7>
+    <p>The average gas price for {{ msg_split[0] }} is {{ msg_split[3] }}</p>
+    <p>The average gas price for {{ msg_split[2] }} is {{ msg_split[4] }}</p>
+    <p>The national average gas price is {{ msg_split[5] }}</p>
     {% endfor %}
-</ul>
+    </div>
+  </div>
 </div>
-
 {% endblock %}

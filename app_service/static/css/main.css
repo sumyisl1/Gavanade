@@ -36,10 +36,10 @@ header a {
   font-size: 1.5em;
 }
 
-header img {
+.logo {
   position: relative;
-  float:
-  left;
+  float: left;
+  width: 300px;
 }
 
 .headcontainer {
@@ -52,19 +52,7 @@ header img {
  * Navigation
  */
 .menu {
-  /* justify-content: center; */
-  /* flex-wrap: nowrap; */
-  /* list-style: none; */
-  /* width: 550px; */
   float: right;
-}
-
-.menu a {
-  float: left;
-  padding: 14px 16px;
-  text-align: center;
-}
-.menu {
   overflow: hidden;
 }
 
@@ -148,6 +136,10 @@ footer ul li {
   padding: 0 15px;
 }
 
+.lastchild {
+  border-right: none;
+}
+
 .row {
   display:block;
   position:relative;
@@ -184,6 +176,9 @@ footer ul li {
   color: white !important;
   font-family: ZenMaruGothic;
   line-height: 20px;
+}
+.welcome-text {
+  font-size: 3em !important;
 }
 
 .project-block {
@@ -250,38 +245,46 @@ footer ul li {
  .searchcontainer {
     display: block;
     background-color: white;
-    opacity: 90%;
+    opacity: 75%;
     text-align: left;
     position: absolute;
-    top: 120px;
-    padding: 10px 25px 50px 20px;
+    right: 0;
+    top: 90px;
+    width: 300px;
+    height: 650px;
+    padding: 25px;
     border: 1px solid #38502C;
-    border-radius: 25px;
+    border-radius: 15px;
     z-index: 9999;
  }
 
  .mapresults {
-  display: none;
-  top: 120px;
-  opacity: 75%;
-  border-radius: 15px;
-  padding: 25px;
+ padding-top: 20px;
+ line-height: 30px;
  }
  
+/*
+ * Map page
+ */
+ .results-button {
+    height: 35px;
+    width: 35px;
+ }
+
+
 /*
 * Basic header formatting
 */
 
 h1 {
   font-family: ZenMaruGothicBold;
-  /* font-size: 2.5em; */
 }
 
 h2 {
-  font-size: 1.5em;
+  font-size: 2em;
   font-weight: normal;
   font-family: ZenMaruGothic;
-  margin-left: 90px;
+  margin-left: 80px;
 }
 h3 {
   font-size: 1.7em;
@@ -291,6 +294,12 @@ h3 {
   letter-spacing: -1px;
 }
 
+h7 {
+  font-size: 2em;
+  margin-block-start: 0;
+  display: block;
+  font-weight: bold;
+}
 
 /*
 * Custom fonts
