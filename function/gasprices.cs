@@ -116,7 +116,8 @@ namespace gavanade.function
             // replace ", " with "/" in city string
             while (city.Contains(", "))
             {
-                city = city.Substring(0, city.IndexOf(",")) + "/" + city.Substring(city.IndexOf(" ") + 1);
+                log.LogInformation(city);
+                city = city.Substring(0, city.IndexOf(", ")) + "/" + city.Substring(city.IndexOf(", ") + 2);
             }
 
             // if given a zipcode, get prices from gasbuddy
