@@ -107,6 +107,11 @@ namespace gavanade.function
             city = responseMessage.Substring(index);
             city = city.Substring(0, city.IndexOf("\""));
 
+            while (city.Contains(", "))
+            {
+                city = city.Substring(0, city.IndexOf(",")) + "/" + city.Substring(city.IndexOf(" ") + 1);
+            }
+
             // if given a zipcode, get prices from gasbuddy
             if (zipcode != 0)
             {
@@ -151,7 +156,7 @@ namespace gavanade.function
 
 
             // update result with zipcode, city, state and all prices
-            result = $"{zipcode},{city},{state},{areaprice},{stateprice},{nationalprice}";
+            result = $"{zipcode}`{city}`{state}`{areaprice}`{stateprice}`{nationalprice}";
             return new OkObjectResult(result);
         }
     }
