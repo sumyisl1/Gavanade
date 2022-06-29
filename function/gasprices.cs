@@ -23,7 +23,8 @@ namespace gavanade.function
         {
             log.LogInformation("Processing request for gas prices.");
 
-            string result = "Error: unable to process request";
+            // variables for parsing request
+            string result = "";
             string zipcodeStr = req.Query["zipcode"];
             string latitudeStr = req.Query["latitude"];
             string longitudeStr = req.Query["longitude"];
@@ -32,11 +33,15 @@ namespace gavanade.function
             double longitude = 0;
 
             // strings for compiling into a result
-            string city = "", state = "", state_abbr = "";
+            string city = "", state = "", stateAbbr = "";
             string areaPrice = "", statePrice = "", nationalPrice = "";
 
+            // variables for internal use
             int index = 0;
-            string searchString = "", responseMessage = "", numResults = "";
+            string searchString = "";
+            string responseMessage = "";
+            string numResults = "";
+            string countryCode = "";
 
             // if the latitude is not null or empty try to parse
             if (!string.IsNullOrEmpty(latitudeStr))
@@ -60,6 +65,18 @@ namespace gavanade.function
                     $"https://atlas.microsoft.com/search/address/reverse/json?api-version=1.0&query={latitude},{longitude}&subscription-key=QtkUpdIsoJvs1Di_m2zLOIe_lPCTQEdGUHnZZCTIQuU"
                 );
                 responseMessage = await response.Content.ReadAsStringAsync();
+
+                // search for zipcode in the response from api
+                searchString = "\"countryCode\":\"";
+                index = responseMessage.IndexOf(searchString) + searchString.Length;
+                countryCode = responseMessage.Substring(index);
+                countryCode = countryCode.Substring(0, countryCode.IndexOf("\""));
+
+                // parse country code
+                if (countryCode != "US")
+                {
+                    return new OkObjectResult("Error: outside US");
+                }
 
                 // search for zipcode in the response from api
                 searchString = "\"postalCode\":\"";
@@ -89,7 +106,7 @@ namespace gavanade.function
                 numResults = numResults.Substring(0, numResults.IndexOf(","));
                 if (Int32.Parse(numResults) < 1)
                 {
-                    return new OkObjectResult("Error: invalid zipcode`0`0`0`0`0");
+                    return new OkObjectResult("Error: invalid zipcode");
                 }
             }
 
@@ -102,14 +119,14 @@ namespace gavanade.function
             // if zipcode is still 0 return an error
             if (zipcode == 0)
             {
-                return new OkObjectResult("Error: invalid query`0`0`0`0`0");
+                return new OkObjectResult("Error: invalid query");
             }
 
             // search for state abbreviation in the response from api
             searchString = "\"countrySubdivision\":\"";
             index = responseMessage.IndexOf(searchString) + searchString.Length;
-            state_abbr = responseMessage.Substring(index);
-            state_abbr = state_abbr.Substring(0, state_abbr.IndexOf("\""));
+            stateAbbr = responseMessage.Substring(index);
+            stateAbbr = stateAbbr.Substring(0, stateAbbr.IndexOf("\""));
 
             // search for state in the response from api
             searchString = "\"countrySubdivisionName\":\"";
@@ -151,11 +168,11 @@ namespace gavanade.function
             }
 
             // use state abbreviation to webscrape AAA for national and state averages
-            if (!string.IsNullOrEmpty(state_abbr))
+            if (!string.IsNullOrEmpty(stateAbbr))
             {
                 // webscrape the average prices from AAA
                 var response = await client.GetAsync(
-                    $"https://gasprices.aaa.com/?state={state_abbr}"
+                    $"https://gasprices.aaa.com/?state={stateAbbr}"
                 );
                 responseMessage = await response.Content.ReadAsStringAsync();
 
