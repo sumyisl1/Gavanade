@@ -69,6 +69,12 @@ namespace gavanade.function
             }
             else
             {
+                // add leading zeros to zipcode_str
+                while (zipcode_str.Length < 5)
+                {
+                    zipcode_str = "0" + zipcode_str;
+                }
+
                 // if no coordinates are given, query api with given zipcode instead
                 client.DefaultRequestHeaders.Add("x-ms-client-id", "46f031d2-20fb-4ca3-b4f3-217ceeaa9d1a");
                 var response = await client.GetAsync(
@@ -107,6 +113,7 @@ namespace gavanade.function
             city = responseMessage.Substring(index);
             city = city.Substring(0, city.IndexOf("\""));
 
+            // replace ", " with "/" in city string
             while (city.Contains(", "))
             {
                 city = city.Substring(0, city.IndexOf(",")) + "/" + city.Substring(city.IndexOf(" ") + 1);
@@ -117,7 +124,7 @@ namespace gavanade.function
             {
                 // webscrape the prices from gasbuddy
                 var response = await client.GetAsync(
-                    $"https://www.gasbuddy.com/home?search={zipcode}"
+                    $"https://www.gasbuddy.com/home?search={zipcode_str}"
                 );
                 responseMessage = await response.Content.ReadAsStringAsync();
 
@@ -154,9 +161,8 @@ namespace gavanade.function
                 stateprice = stateprice.Substring(0, stateprice.IndexOf(" "));
             }
 
-
             // update result with zipcode, city, state and all prices
-            result = $"{zipcode}`{city}`{state}`{areaprice}`{stateprice}`{nationalprice}";
+            result = $"{zipcode_str}`{city}`{state}`{areaprice}`{stateprice}`{nationalprice}";
             return new OkObjectResult(result);
         }
     }
