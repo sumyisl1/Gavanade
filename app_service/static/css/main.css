@@ -245,32 +245,100 @@ footer ul li {
  .searchcontainer {
     display: block;
     background-color: white;
-    opacity: 75%;
+    opacity: 90%;
     text-align: left;
     position: absolute;
-    right: 0;
-    top: 90px;
-    width: 300px;
-    height: 650px;
+    top: 120px;
     padding: 25px;
     border: 1px solid #38502C;
-    border-radius: 15px;
+    border-radius: 25px;
     z-index: 9999;
  }
 
  .mapresults {
  padding-top: 20px;
  line-height: 30px;
+ border-radius: 15px;
+ width: 300px;
  }
  
 /*
  * Map page
  */
- .results-button {
-    height: 35px;
-    width: 35px;
+
+ .close-container{
+  position: relative;
+  margin: auto;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+  float: right;
+  padding-top: 10px;
+}
+
+.leftright{
+  height: 4px;
+  width: 25px;
+  position: absolute;
+  background-color: #38502C;
+  border-radius: 2px;
+  transform: rotate(45deg);
+  transition: all .3s ease-in;
+}
+
+.rightleft{
+  height: 4px;
+  width: 25px;
+  position: absolute;
+  background-color: #38502C;
+  border-radius: 2px;
+  transform: rotate(-45deg);
+  transition: all .3s ease-in;
+}
+
+label{
+  color: white;
+  font-family: Helvetica, Arial, sans-serif; 
+  font-size: .6em;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  transition: all .3s ease-in;
+  opacity: 0;
+}
+.close{
+  margin: 60px 0 0 5px;
+  position: absolute;
+}
+
+.close-container:hover .leftright{
+  transform: rotate(-45deg);
+  background-color: #B7E1B0;
+}
+.close-container:hover .rightleft{
+  transform: rotate(45deg);
+  background-color: #B7E1B0;
+}
+.close-container:hover label{
+  opacity: 1;
+}
+
+ .mapcontainer {
+  height: 648px;
+  top: 90px !important;
+  left: 0;
+  opacity: 75%;
  }
 
+ .closed {
+  transition-property: opacity;
+  transition-duration: 0.25s;
+  opacity: 0%;
+ }
+
+ .removed {
+  display: none;
+  z-index: -9999;
+ }
 
 /*
 * Basic header formatting

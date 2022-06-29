@@ -18,15 +18,13 @@ L.polyline(latlngs[0].concat(latlngs[0][0])).addTo(map);
 var marker;
 map.on('click',
     function (e) {
-        if (marker) { // check
-            map.removeLayer(marker); // remove
-        }
+
         var popup = L.popup()
             .setLatLng(e.latlng)
             .setContent('<p>You are here!</p>');
         var coord = e.latlng; 
         var lat = coord.lat;
         var lng = coord.lng;
-        marker = L.marker(e.latlng, { draggable: 'true' }).addTo(map)
-            .bindPopup('Search gas price <a href="/search/coordinates?latitude=' + lat + '&longitude=' + lng + '"> here</a>').openPopup();
+        window.location = '/search/coordinates?latitude=' + lat + '&longitude=' + lng;
+        marker = L.marker(e.latlng, { draggable: 'true' }).addTo(map);
     });
