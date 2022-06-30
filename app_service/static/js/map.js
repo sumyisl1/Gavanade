@@ -18,7 +18,9 @@ L.polyline(latlngs[0].concat(latlngs[0][0])).addTo(map);
 var marker;
 map.on('click',
     function (e) {
-
+        if (marker) { // check
+            map.removeLayer(marker); // remove
+        }
         var popup = L.popup()
             .setLatLng(e.latlng)
             .setContent('<p>You are here!</p>');
