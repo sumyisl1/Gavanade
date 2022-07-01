@@ -12,7 +12,7 @@
 <body>
   <header>
     <div class="headcontainer">
-      <img src="static/pictures/Gavanade-Logo.png" alt="Gavanade Logo" class="logo" style="width:300px" />
+      <img src="static/pictures/Gavanade-Logo.png" alt="Gavanade Logo" class="logo" />
       <strong>
         <nav>
           <div class="menu">
@@ -28,7 +28,7 @@
               </div>
             </div>
             <a href="{{ url_for('placeholder') }}">Alternative Fuel</a></li>
-            <a href="{{ url_for('placeholder') }}">Contact</a></li>
+            <a href="{{ url_for('contact') }}">Contact</a></li>
             </ul>
         </nav>
       </strong>
@@ -45,9 +45,9 @@
 <footer>
   <div class="row">
     <ul>
-      <li><a target="_blank" href="{{ url_for('legal') }}" title="Legal Notice">Legal Notice</li>
+      <li><a target="_blank" href="{{ url_for('legal') }}" title="Terms and Conditions">Terms and Conditions</li>
       <li><a target="_blank" href="{{ url_for('contact') }}" title="Contact">Contact Us</li>
-      <li style="border-right: none;"><a target="_blank" href="{{ url_for('privacypolicy') }}"
+      <li class= "lastchild"><a target="_blank" href="{{ url_for('privacypolicy') }}"
           title="Privacy Policy">Privacy Policy</li>
     </ul>
   </div>

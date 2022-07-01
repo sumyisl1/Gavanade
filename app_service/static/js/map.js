@@ -27,6 +27,6 @@ map.on('click',
         var coord = e.latlng; 
         var lat = coord.lat;
         var lng = coord.lng;
-        marker = L.marker(e.latlng, { draggable: 'true' }).addTo(map)
-            .bindPopup('Search gas price <a href="/search/coordinates?latitude=' + lat + '&longitude=' + lng + '"> here</a>').openPopup();
+        window.location = '/search/coordinates?latitude=' + lat + '&longitude=' + lng;
+        marker = L.marker(e.latlng, { draggable: 'true' }).addTo(map);
     });

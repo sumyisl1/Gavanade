@@ -180,13 +180,13 @@ namespace gavanade.function
                 searchString = "AAA National Average ";
                 index = responseMessage.IndexOf(searchString) + searchString.Length;
                 nationalPrice = responseMessage.Substring(index);
-                nationalPrice = nationalPrice.Substring(0, nationalPrice.IndexOf(" "));
+                nationalPrice = nationalPrice.Substring(0, nationalPrice.IndexOf(" ") - 1);
 
                 // search for the state average in string returned from AAA
                 searchString = $"AAA {state} Avg. ";
                 index = responseMessage.IndexOf(searchString) + searchString.Length;
                 statePrice = responseMessage.Substring(index);
-                statePrice = statePrice.Substring(0, statePrice.IndexOf(" "));
+                statePrice = statePrice.Substring(0, statePrice.IndexOf(" ") - 1);
             }
 
             // update result with zipcode, city, state and all prices

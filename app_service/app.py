@@ -53,13 +53,14 @@ def search_zipcode():
     zipcode = request.form["zipcode"]
     try:
         zipcode = int(zipcode)
-        if 500 <= zipcode <= 99950:
+        if 501 <= zipcode <= 99950:
             response = requests.get(
                 f"{function_url}/gasprices?zipcode={zipcode}",
             )
             flash(response.text)
         else:
             zipcode = -2
+            flash("Please enter a valid US zipcode.")
     except BaseException:
         zipcode = -2
 
