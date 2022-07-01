@@ -1,7 +1,7 @@
 
 body {
   padding: 0;
-  font-family: LatoBold, Helvetica, Arial, sans-serif;
+  font-family: Lato, Helvetica, Arial, sans-serif;
   background-color: #B7E1B0;
   color: #38502C;
   margin: 0;
@@ -79,6 +79,7 @@ header a {
   margin: 0;
   color: inherit;
   display: block;
+  font-weight: bold;
 }
 
 .menu a:hover, .dropdown:hover .dropbtn {
@@ -92,6 +93,7 @@ header a {
   background-color: #38502C;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 9999;
 }
 
 .dropdown-content a {
@@ -334,6 +336,31 @@ label{
     font-family: Lato;
   }
 
+/*
+ * Contact Page
+ */
+
+  .contactform {
+    width: 700px;
+    height: 500px;
+    padding-left: 50px;
+  } 
+
+  .concernform {
+    font-size: .9em;
+    width: 300px;
+  }
+
+  .formbase {
+    background-color: white;
+    opacity: 70%;
+    border-radius: 15px;
+    border-color: #38502C;
+    border-width: 1px;
+    border: solid;
+    padding: 25px;
+    display: inline-block;
+  }
 /*
 * Basic header formatting
 */
