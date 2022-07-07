@@ -168,14 +168,12 @@ footer ul li {
 */
 
 .mission-block {
-  
   padding: 100px 0 200px 0;
   color: #B7E1B0;
   background-image: url('../pictures/mining-for-fuel.jpeg') !important;
   background-position: center !important;
   background-repeat: no-repeat !important;
   background-size: cover !important;
-  
 }
 
 .mission-text {
@@ -188,20 +186,18 @@ footer ul li {
 .project-block {
   background-color:#38502C;
   padding: 50px 50px 50px 50px;
-  height: 250px;
+  height: 400px;
   column-gap: 50px;
   display: grid;
   grid-template-columns: auto auto auto;
-
 }
 
 .project {
-  background-color:gainsboro !important;
-  border-radius: 15px;
-  text-align: center;
-  display: inline-block;
+  display: inline-block; 
   -webkit-transition: -webkit-transform 1s;
   transition: transform 1s;
+  background-size: cover;
+  width: 33.33%;
 }
 
 .project:hover {
@@ -267,6 +263,19 @@ footer ul li {
   padding: 25px;
  }
  
+ .darkgreen {
+background: #38502C;
+color: #B7E1B0;
+ }
+
+.lightgreen {
+background: #B7E1B0;
+}
+
+.aboutusbox {
+display: block;
+height: 500px;
+}
 /*
 * Basic header formatting
 */
@@ -291,6 +300,7 @@ h3 {
 }
 
 
+    
 /*
 * Custom fonts
 */
