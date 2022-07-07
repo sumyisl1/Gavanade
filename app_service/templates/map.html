@@ -16,12 +16,51 @@
 <script src="{{ url_for('static', filename='js/map.js') }}">
 </script>
 
-<ul class=flashes>
+<div class= "flashes">
   {% for message in get_flashed_messages() %}
-  <div class="searchcontainer mapresults" style="display:block">
-  <li>The average gas price is {{ message }}</li>
-  {% endfor %}
-</ul>
-</div>
+  <div class="searchcontainer mapcontainer" id="outer" style="display:block">
+    <div class="close-container" id="results-button">
+      <div class="leftright"></div>
+      <div class="rightleft"></div>
+      <label class="close">close</label>
+    </div>
+    <div class= "mapresults" id="outer">
+    {% if message[0] in "0123456789" %}
 
+    {% set msg_split = message.split("`") %}
+
+    <h7>{{ msg_split[1] }}, {{ msg_split[2] }}</h7>
+    <ul id="resultlist">
+      <li style="text-align: center">Average Gas Prices:</li>
+      <hr>
+      <li>Zipcode {{ msg_split[0] }}: {{ msg_split[3] }}</li>
+      <hr>
+      <li>{{ msg_split[2] }}: {{ msg_split[4] }}</li>
+      <hr>
+      <li>United States: {{ msg_split[5] }}</li>
+      <hr>
+    </ul>
+    {% else %}
+
+    <li>{{ message }}</li>
+
+    {% endif %}
+  </div>
+</div>
+  {% endfor %}
+  <script>
+      
+    var button = document.getElementById( "results-button" );
+
+    button.addEventListener( 'click', function() {
+    document.getElementById( "outer" ).classList.add( "closed" );
+    document.getElementById( "outer" ).addEventListener( 'transitionend', function() {
+      if (document.getElementById( "outer" ).classList.contains('closed')) {
+      document.getElementById( "outer" ).classList.add('removed');
+      }
+    });
+    
+    });
+  </script>
+</div>
 {% endblock %}
