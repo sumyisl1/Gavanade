@@ -17,22 +17,6 @@ a:link, a:visited, a:hover, a:active {
 /*
  * Formatting the header area
  */
-header {
-  height: 60px;
-  opacity: .9;
-  margin-left: 0px;
-  position: static;
-  margin-bottom: 30px;
-}
-
-header a:visited {
-  color: #38502C;
-}
-
-header a {
-  color: #38502C;
-  font-size: 1.5em;
-}
 
 .logo {
   position: relative;
