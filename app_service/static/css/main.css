@@ -1,7 +1,7 @@
 
 body {
   padding: 0;
-  font-family: LatoBold, Helvetica, Arial, sans-serif;
+  font-family: Lato, Helvetica, Arial, sans-serif;
   background-color: #B7E1B0;
   color: #38502C;
   margin: 0;
@@ -23,7 +23,6 @@ header {
   margin-left: 0px;
   position: static;
   margin-bottom: 30px;
-  /* margin-top: 10px; */
 }
 
 header a:visited {
@@ -55,30 +54,26 @@ header a {
   overflow: hidden;
 }
 
-.menu a {
+.navcomponent {
   float: left;
   font-size: 20px;
-  color: white;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
 }
 
+.dropcomponent {
+  width: 170px;
+  border-radius: 10px;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
 .dropdown {
   float: left;
   overflow: overlay;
-}
-
-.dropdown .dropbtn {
-  font-size: 20px;
-  border: none;
-  outline: none;
-  padding: 14px 16px;
-  background-color: inherit;
-  font-family: inherit;
-  margin: 0;
-  color: inherit;
-  display: block;
 }
 
 .menu a:hover, .dropdown:hover .dropbtn {
@@ -90,22 +85,18 @@ header a {
   display: none;
   position: absolute;
   background-color: #38502C;
-  min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-}
-
-.dropdown-content a {
-  /* float: right; */
-  color: #B7E1B0;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-  text-align: left;
+  width: 200px;
+  z-index: 9999;
+  border-radius: 10px;
+  padding: 0;
+  margin-block-start: 44px;
 }
 
 .dropdown-content a:hover {
   background-color: #ddd;
 }
+
 
 .dropdown-content a:visited {
  color: #B7E1B0;
@@ -140,8 +131,10 @@ footer ul li {
 }
 
 .row {
-  display:block;
-  position:relative;
+  display:
+  block;
+  position:
+  relative;
   line-height: 2;
   margin: 25px auto;
   width: 100%;
@@ -230,7 +223,7 @@ footer ul li {
  }
 
  .searchcontainer {
-    display: block;
+    display: inline-flex;
     background-color: white;
     opacity: 90%;
     text-align: left;
@@ -240,6 +233,8 @@ footer ul li {
     border: 1px solid #38502C;
     border-radius: 25px;
     z-index: 9999;
+    flex-direction: column;
+    font-size: 1.1em;
  }
 
  .mapresults {
@@ -247,6 +242,13 @@ footer ul li {
  line-height: 30px;
  border-radius: 15px;
  width: 300px;
+ }
+
+ #zipcode {
+  color:#38502C;
+  border-bottom: 1px solid #38502C;
+  width: 60%;
+  display: block;
  }
  
 /*
@@ -283,15 +285,16 @@ footer ul li {
   transition: all .3s ease-in;
 }
 
-label{
+label {
   color: white;
-  font-family: Helvetica, Arial, sans-serif; 
+  font-family: Helvetica, Arial, sans-serif;
   font-size: .6em;
   text-transform: uppercase;
   letter-spacing: 2px;
   transition: all .3s ease-in;
   opacity: 0;
 }
+
 .close{
   margin: 60px 0 0 5px;
   position: absolute;
@@ -335,6 +338,92 @@ label{
   }
 
 /*
+ * Contact Page
+ */
+
+  .contact {
+   display: inline-flex;
+   margin-inline-start: 30px;
+   justify-content: space-between;
+   align-items: stretch;
+  }
+
+  .contactform {
+    width: 66%;
+    display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-content: space-around;
+  } 
+
+  .concernform {
+    font-size: .725em;
+    width: 23%;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+
+  .formbase {
+    background-color: white;
+    opacity: 70%;
+    border-radius: 15px;
+    border-color: #38502C;
+    border-width: 1px;
+    border: solid;
+    padding: 25px;
+    height: 500px;
+    /* z-index: -1; */
+  }
+
+ #contact-head {
+  text-align: center;
+  margin-block-start: 0.25em;
+  font-size: 2.5em;
+ }
+
+  .formcomponent {
+    color:#38502C;
+    border-bottom: 1px solid #38502C;
+    text-align: center;
+  }
+
+  input[type="text"], input[type="email"], textarea {
+    background-color: transparent;
+    padding-bottom: 1.5rem;
+    padding: 10px;
+    width: 100%;
+    border-width: 0;
+  }
+  
+  input[type="submit"], button[type="submit"] {
+    background-color:#38502C;
+    color:#B7E1B0;
+    font-size: 20px;
+    width: 100px;
+    height: 40px;
+    box-shadow: 3px 3px 5px #888888;
+    border-radius: 5px;
+    border: none;
+  }
+  
+  .half {
+    width: 40%;
+  }
+
+  .formrow {
+    display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding-block: 10px;
+    width: 100%;
+  }
+
+  label {
+    display: block;
+  }
+
+/*
 * Basic header formatting
 */
 
@@ -363,6 +452,15 @@ h7 {
   padding-bottom: 20px;
   line-height: 40px;
   text-align: center;
+}
+
+.formlabel {
+ font-size: 1.5em;
+ opacity: 1;
+ color: #38502C;
+ text-transform: initial;
+ letter-spacing: normal;
+ font-family: inherit;
 }
 
 /*
