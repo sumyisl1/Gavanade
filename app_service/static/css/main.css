@@ -332,8 +332,8 @@ body {
       padding-inline-start: 10px;
       font-family: Lato;
     }
-  
-    .darkgreen{
+
+       .darkgreen{
         background:#38502C;
         color:#B7E1B0;
     }
@@ -343,13 +343,13 @@ body {
     }
 
     .aboutusbox{
-        display: box;
+        display: block;
         height: 300px;
-    
     }
 
     .abouttext{
       margin-left: 5px;
+      font-size:xx-large;
     }
 
     .picturebox {
