@@ -340,18 +340,24 @@ body {
 
     .lightgreen{
         background:#B7E1B0;
-        
     }
 
     .aboutusbox{
         display: box;
-        height: 500px;
+        height: 300px;
+    
+    }
+
+    .abouttext{
+      margin-left: 5px;
     }
 
     .picturebox {
       float: right;
-      width: 400px;
-      height: 400px;  
+      width: 200px;
+      height: 200px;  
+      object-fit:contain;
+      margin-right: 0.5rem;
 }
 
 
