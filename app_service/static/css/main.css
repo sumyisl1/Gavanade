@@ -340,12 +340,21 @@ body {
 
     .lightgreen{
         background:#B7E1B0;
+        
     }
 
     .aboutusbox{
         display: box;
-        height: 400px;
+        height: 500px;
     }
+
+    .picturebox {
+      float: right;
+      width: 400px;
+      height: 400px;  
+}
+
+
   /*
   * Basic header formatting
   */
