@@ -27,6 +27,7 @@ namespace gavanade.function
 
             // request which table to run via query
             string table = req.Query["table"];
+            string write = req.Query["write"];
 
             string result = "";
             string responseMessage = "";
@@ -49,19 +50,23 @@ namespace gavanade.function
             // pastPrices table = 1
             if (table == "pastPrices")
             {
-                tableNum = 1;
+                tableNum = 2;
             }
             // contactInformation table = 2
             else if (table == "contactInformation")
             {
-                tableNum = 2;
+                tableNum = 4;
             }
             // concerns table = 2
             else if (table == "concerns")
             {
-                tableNum = 3;
+                tableNum = 6;
             }
 
+            if (write == "write")
+            {
+                tableNum++;
+            }
             // if unknown table was given, ERROR CHECKING
             if (tableNum == 0)
             {
@@ -71,8 +76,49 @@ namespace gavanade.function
             {
                 switch (tableNum)
                 {
-                    // if pastPrices table was given 
-                    case 1:
+                    // if reading from pastPrices
+                    case 2:
+                        using (SqlConnection connection = new SqlConnection(builder.ConnectionString))
+                        {
+                            connection.Open();
+
+                            // query which state to recieve gasprice from database
+                            string state = req.Query["state"];
+                            string statePr = "";
+                            string nationalPr = "";
+
+                            // make query to read from sql database
+                            query = $"SELECT [US], [{state}] FROM dbo.pastPrices";
+                            using (SqlCommand command = new SqlCommand(query, connection))
+                            {
+                                // execute sql query
+                                SqlDataReader dataReader = command.ExecuteReader();
+                                // read sql query response
+                                dataReader.Read();
+                                statePr += dataReader.GetValue(1);
+                                nationalPr += dataReader.GetValue(0);
+
+                                // if state or national price ends in a zero, add those trailing zeros
+                                while (statePr.Length < 4)
+                                {
+                                    statePr += "0";
+                                }
+                                while (nationalPr.Length < 4)
+                                {
+                                    nationalPr += "0";
+                                }
+
+                                // set result to {state price}`{national price}
+                                result += statePr + "`" + nationalPr;
+                            }
+                            connection.Close();
+                        }
+
+                        log.LogInformation(result);
+                        return new OkObjectResult(result);
+
+                    // if writing to pastPrices
+                    case 3:
                         log.LogInformation("Processing past prices.");
 
                         // webscrape state averages page from AAA
@@ -148,12 +194,12 @@ namespace gavanade.function
                         }
 
                         break;
-                    // if contactInformation table was given
-                    case 2:
+                    // if writing to contactInformation
+                    case 5:
                         log.LogInformation("Processing contact information.");
                         break;
-                    // if concerns table was given
-                    case 3:
+                    // if writing to concerns
+                    case 7:
                         log.LogInformation("Processing concerns.");
                         break;
                     // if unknown table was given return an error
