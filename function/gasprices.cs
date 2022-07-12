@@ -189,8 +189,13 @@ namespace gavanade.function
                 statePrice = statePrice.Substring(0, statePrice.IndexOf(" ") - 1);
             }
 
-            // update result with zipcode, city, state and all prices
-            result = $"{zipcodeStr}`{city}`{state}`{areaPrice}`{statePrice}`{nationalPrice}";
+            // update result with zipcode, city, state and all prices including the prices of the most recent sunday
+            var databaseResponse = await client.GetAsync(
+                $"https://gavanade-function-windows.azurewebsites.net/api/database?table=pastPrices&state={state}"
+            );
+            responseMessage = await databaseResponse.Content.ReadAsStringAsync();
+
+            result = $"{zipcodeStr}`{city}`{state}`{areaPrice}`{statePrice}`{nationalPrice}`{responseMessage}";
             return new OkObjectResult(result);
         }
     }
