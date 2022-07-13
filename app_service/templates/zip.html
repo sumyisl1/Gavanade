@@ -7,7 +7,8 @@
     <p> Search for gas prices in your area based on your zipcode</p>
     <form action="{{url_for('search_zipcode')}}" method="post" class="zipsearch" autocomplete="off">
       <input type="text" id="zipcode" name="zipcode" placeholder="Zipcode">
-      <button type="submit" name="search">Search</button>
+      <br>
+      <button type="submit" id="zipsearchbutton" name="search">Search</button>
     </form>
 
     <ul class=flashes>

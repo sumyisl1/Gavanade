@@ -6,6 +6,320 @@ body {
     color: #38502C;
     margin: 0;
     min-height: 100%;
+
+}
+
+a:link, a:visited, a:hover, a:active {
+  text-decoration: none;
+  color: #38502C;
+}
+
+
+/*
+ * Formatting the header area
+ */
+
+.logo {
+  position: relative;
+  float: left;
+  width: 300px;
+}
+
+.headcontainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+ /*
+ * Navigation
+ */
+.menu {
+  float: right;
+  overflow: hidden;
+}
+
+.navcomponent {
+  float: left;
+  font-size: 20px;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.dropcomponent {
+  width: 170px;
+  border-radius: 10px;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown {
+  float: left;
+  overflow: overlay;
+}
+
+.menu a:hover, .dropdown:hover .dropbtn {
+   background-color: #38502C;
+  color: #B7E1B0;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #38502C;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  width: 200px;
+  z-index: 9999;
+  border-radius: 10px;
+  padding: 0;
+  margin-block-start: 44px;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+
+.dropdown-content a:visited {
+ color: #B7E1B0;
+} 
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+ /*
+ * Footer content
+ */
+footer {
+  text-align: center;
+  bottom: 0;
+}
+
+footer ul li a, footer ul li a:visited {
+  color: #38502C;
+  text-transform: uppercase;
+  font-size: 18px;
+}
+
+footer ul li {
+  list-style:none;
+  display:inline;
+  border-right: 1px solid #38502C;
+  padding: 0 15px;
+}
+
+.lastchild {
+  border-right: none;
+}
+
+.row {
+  display:
+  block;
+  position:
+  relative;
+  line-height: 2;
+  margin: 25px auto;
+  width: 100%;
+}
+
+/*
+* Center content of each page
+*/
+.centercontainer {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+/*
+ * Home page content
+*/
+
+.mission-block {
+  
+  padding: 100px 0 200px 0;
+  color: #B7E1B0;
+  background-image: url('../pictures/mining-for-fuel.jpeg') !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+  
+}
+
+.mission-text {
+  margin-left: 80px;
+  color: white !important;
+  font-family: ZenMaruGothic;
+  line-height: 20px;
+}
+.welcome-text {
+  font-size: 3em !important;
+}
+
+.project-block {
+  background-color:#38502C;
+  padding: 50px 50px 50px 50px;
+  height: 250px;
+  column-gap: 50px;
+  display: grid;
+  grid-template-columns: auto auto auto;
+
+}
+
+.project {
+  background-color:gainsboro !important;
+  border-radius: 15px;
+  text-align: center;
+  display: inline-block;
+  -webkit-transition: -webkit-transform 1s;
+  transition: transform 1s;
+}
+
+.project:hover {
+  --webkit-transform: scale(1.2);
+  transform: scale(1.2);
+}
+
+/*
+* About page contents
+*/
+
+.about {
+  padding: 10px 0 30px 0;
+  -webkit-border-radius: 6px;
+     -moz-border-radius: 6px;
+          border-radius: 6px;
+}
+
+/*
+ * Zipcode Search Page
+ */
+
+ .gassearch {
+    background-image: url('../pictures/car-refuel.jpeg');
+    display: block;
+    background-size: cover;
+    height: 600px;
+    padding-top: 50px;
+    padding-left: 50px;
+    width: auto;
+ }
+
+ .searchcontainer {
+    display: inline-flex;
+    background-color: white;
+    opacity: 90%;
+    text-align: left;
+    position: absolute;
+    top: 120px;
+    padding: 25px;
+    border: 1px solid #38502C;
+    border-radius: 25px;
+    z-index: 9999;
+    flex-direction: column;
+    font-size: 1.1em;
+ }
+
+ .mapresults {
+ padding-top: 20px;
+ line-height: 30px;
+ border-radius: 15px;
+ width: 300px;
+ }
+
+ #zipcode {
+  color:#38502C;
+  border-bottom: 1px solid #38502C;
+  width: 60%;
+  display: block;
+ }
+ 
+/*
+ * Map page
+ */
+
+ .close-container{
+  position: relative;
+  margin: auto;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+  float: right;
+  padding-top: 10px;
+}
+
+.leftright{
+  height: 4px;
+  width: 25px;
+  position: absolute;
+  background-color: #38502C;
+  border-radius: 2px;
+  transform: rotate(45deg);
+  transition: all .3s ease-in;
+}
+
+.rightleft{
+  height: 4px;
+  width: 25px;
+  position: absolute;
+  background-color: #38502C;
+  border-radius: 2px;
+  transform: rotate(-45deg);
+  transition: all .3s ease-in;
+}
+
+label {
+  color: white;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: .6em;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  transition: all .3s ease-in;
+  opacity: 0;
+}
+
+.close{
+  margin: 60px 0 0 5px;
+  position: absolute;
+}
+
+.close-container:hover .leftright{
+  transform: rotate(-45deg);
+  background-color: #B7E1B0;
+}
+.close-container:hover .rightleft{
+  transform: rotate(45deg);
+  background-color: #B7E1B0;
+}
+.close-container:hover label{
+  opacity: 1;
+}
+
+ .mapcontainer {
+  height: 648px;
+  top: 90px !important;
+  left: 0;
+  opacity: 75%;
+ }
+
+ .closed {
+  transition-property: opacity;
+  transition-duration: 0.25s;
+  opacity: 0%;
+ }
+
+ .removed {
+  display: none;
+  z-index: -9999;
+ }
+
+  #resultlist {
+    font-size: 1.3em;
+    list-style: none;
+    padding-inline-start: 10px;
+    font-family: Lato;
   }
   
   a:link, a:visited, a:hover, a:active {
@@ -337,6 +651,95 @@ body {
         background:#38502C;
         color:#B7E1B0;
     }
+/*
+ * Contact Page
+ */
+
+  .contact {
+   display: inline-flex;
+   margin-inline-start: 30px;
+   justify-content: space-between;
+   align-items: stretch;
+  }
+
+  .contactform {
+    width: 66%;
+    display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-content: space-around;
+  } 
+
+  .concernform {
+    font-size: .725em;
+    width: 23%;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+
+  .formbase {
+    background-color: white;
+    opacity: 70%;
+    border-radius: 15px;
+    border-color: #38502C;
+    border-width: 1px;
+    border: solid;
+    padding: 25px;
+    height: 500px;
+    /* z-index: -1; */
+  }
+
+ #contact-head {
+  text-align: center;
+  margin-block-start: 0.25em;
+  font-size: 2.5em;
+ }
+
+  .formcomponent {
+    color:#38502C;
+    border-bottom: 1px solid #38502C;
+    text-align: center;
+  }
+
+  input[type="text"], input[type="email"], textarea {
+    background-color: transparent;
+    padding-bottom: 1.5rem;
+    padding: 10px;
+    width: 100%;
+    border-width: 0;
+  }
+  
+  input[type="submit"], button[type="submit"] {
+    background-color:#38502C;
+    color:#B7E1B0;
+    font-size: 20px;
+    width: 100px;
+    height: 40px;
+    box-shadow: 3px 3px 5px #888888;
+    border-radius: 5px;
+    border: none;
+  }
+  
+  .half {
+    width: 40%;
+  }
+
+  .formrow {
+    display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding-block: 10px;
+    width: 100%;
+  }
+
+  label {
+    display: block;
+  }
+
+/*
+* Basic header formatting
+*/
 
     .lightgreen{
         background:#B7E1B0;
@@ -392,6 +795,15 @@ body {
     text-align: center;
   }
   
+  .formlabel {
+    font-size: 1.5em;
+    opacity: 1;
+    color: #38502C;
+    text-transform: initial;
+    letter-spacing: normal;
+    font-family: inherit;
+   }
+   
   /*
   * Custom fonts
   */
