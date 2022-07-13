@@ -4,7 +4,7 @@
   <div class= "contactform formbase">
     <h1 id="contact-head">Join our list for updates and more information!</h1>
     <div class="signupform">
-      <form action="/action_page.php" method="post">
+    <form action="{{url_for('contact_info_update')}}" method="post">
         <div class="formrow">
         <div class="half formcomponent">
         <label for="fname" class="formlabel">First name: </label>
@@ -30,7 +30,7 @@
   </div>
   <div class= "concernform formbase">
     <h1 id="contact-head">Submit questions, suggestions, and concerns:</h1>
-    <form>
+    <form action="{{url_for('concerns_update')}}" method="post">
       <div class="formcomponent">
       <label for="email" class="formlabel">Email: </label>
       <input type="email" id="email" name="email"></div>
@@ -38,6 +38,8 @@
       <p class="formlabel">Message:</p>
       <textarea name="concerns" style="height:100px;">
         </textarea></div>
+      <div class="full formrow submitbutton">
+      <input type="submit" value="Submit"></div>
     </form>
     <h5> or email us at</h5>
     <a href="mailto: braedon.lindsey@avanade.com">braedon.lindsey@avanade.com</a>
