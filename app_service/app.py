@@ -85,5 +85,31 @@ def search_coordinates():
     return redirect(url_for("map"))
 
 
+@app.route("/concerns/update", methods=("GET", "POST"))
+def concerns_update():
+    email = request.form["email"]
+    msg = request.form["concerns"]
+
+    requests.get(
+        f"{function_url}/database?table=concerns&write=write&email={email}&msg={msg}",
+    )
+
+    return redirect(url_for("contact"))
+
+
+@app.route("/contact/update", methods=("GET", "POST"))
+def contact_info_update():
+    first_name = request.form["fname"]
+    last_name = request.form["lname"]
+    email = request.form["email"]
+
+    requests.get(
+        f"{function_url}/database?table=contactInformation&write=write&firstName={first_name}&lastName={last_name}&email={email}",
+    )
+    print("Processed Contact Info.")
+
+    return redirect(url_for("contact"))
+
+
 if __name__ == "__main__":
     app.run()
