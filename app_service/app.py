@@ -80,7 +80,7 @@ def search_coordinates():
         flash(response.text)
     except BaseException:
         lat = -2
-        lon = -2 
+        lon = -2
 
     return redirect(url_for("map"))
 
