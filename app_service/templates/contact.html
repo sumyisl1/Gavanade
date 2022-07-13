@@ -1,43 +1,68 @@
 {% extends "layout.html" %}
 {% block content %}
 <div class="contact centercontainer">
-  <div class= "contactform formbase">
+
+  <div class="flashes">
+    {% for message in get_flashed_messages() %}
+    <h3>{{ message }}</h3>
+    {% endfor %}
+  </div>
+
+  <div class="contactform formbase">
     <h1 id="contact-head">Join our list for updates and more information!</h1>
     <div class="signupform">
-      <form action="/action_page.php" method="post">
+      <form action="{{url_for('contact_info_update')}}" method="post">
         <div class="formrow">
-        <div class="half formcomponent">
-        <label for="fname" class="formlabel">First name: </label>
-        <input type="text" id="fname" name="fname"><br></div>
-        <span class="error">* <?php echo $fnameErr;?></span>
-        <div class="half formcomponent">
-        <label for="lname" class="formlabel">Last name: </label>
-        <input type="text" id="lname" name="lname"><br></div>
-        <span class="error">* <?php echo $lnameErr;?></span>
-      </div>
+          <div class="half formcomponent">
+            <label for="fname" class="formlabel">First name: </label>
+            <input type="text" id="fname" name="fname"><br>
+          </div>
+          <span class="error">*
+            <?php echo $fnameErr;?>
+          </span>
+          <div class="half formcomponent">
+            <label for="lname" class="formlabel">Last name: </label>
+            <input type="text" id="lname" name="lname"><br>
+          </div>
+          <span class="error">*
+            <?php echo $lnameErr;?>
+          </span>
+        </div>
         <div class="full formcomponent formrow">
-        <label for="email" class="formlabel">Email: </label>
-        <input type="email" id="email" name="email"></div>
-        <span class="error">* <?php echo $emailErr;?></span>
+          <label for="email" class="formlabel">Email: </label>
+          <input type="email" id="email" name="email">
+        </div>
+        <span class="error">*
+          <?php echo $emailErr;?>
+        </span>
         <div class="full formrow">
-        <p class="formlabel">I confirm that I have read and accept the <a href="{{ url_for('legal') }}" target="_blank">Terms and Conditions</a>.</p>
-        <input type="radio" id="agree" name="termsagreement" value="agree"></div>
-        <span class="error">* <?php echo $agreeErr;?></span>
+          <p class="formlabel">I confirm that I have read and accept the <a href="{{ url_for('legal') }}"
+              target="_blank">Terms and Conditions</a>.</p>
+          <input type="radio" id="agree" name="termsagreement" value="agree">
+        </div>
+        <span class="error">*
+          <?php echo $agreeErr;?>
+        </span>
         <div class="full formrow submitbutton">
-        <input type="submit" value="Submit"></div>
+          <input type="submit" value="Submit">
+        </div>
       </form>
     </div>
   </div>
-  <div class= "concernform formbase">
+  <div class="concernform formbase">
     <h1 id="contact-head">Submit questions, suggestions, and concerns:</h1>
-    <form>
+    <form action="{{url_for('concerns_update')}}" method="post">
       <div class="formcomponent">
-      <label for="email" class="formlabel">Email: </label>
-      <input type="email" id="email" name="email"></div>
+        <label for="email" class="formlabel">Email: </label>
+        <input type="email" id="email" name="email">
+      </div>
       <div class="formcomponent">
-      <p class="formlabel">Message:</p>
-      <textarea name="concerns" style="width:200px; height:200px;">
-        </textarea></div>
+        <p class="formlabel">Message:</p>
+        <textarea name="concerns" style="height:100px;"></textarea>
+      </div>
+      <div class="full formrow submitbutton">
+        <input type="submit" value="Submit">
+      </div>
     </form>
     <h5> or email us at</h5>
     <a href="mailto: braedon.lindsey@avanade.com">braedon.lindsey@avanade.com</a>

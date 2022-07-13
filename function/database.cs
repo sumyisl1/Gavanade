@@ -196,11 +196,55 @@ namespace gavanade.function
                         break;
                     // if writing to contactInformation
                     case 5:
-                        log.LogInformation("Processing contact information.");
+                        using (SqlConnection connection = new SqlConnection(builder.ConnectionString))
+                        {
+                            // sql query for inserting contact info
+                            query = $"INSERT INTO [dbo].[contactInformation] VALUES (@firstName, @lastName, @email)";
+                            using (SqlCommand command = new SqlCommand(query, connection))
+                            {
+                                // assign parameters from query into variables
+                                string firstName = req.Query["firstName"];
+                                string lastName = req.Query["lastName"];
+                                string email = req.Query["email"];
+
+                                // safely add variable values into the sql query
+                                command.Parameters.AddWithValue("@firstName", firstName);
+                                command.Parameters.AddWithValue("@lastName", lastName);
+                                command.Parameters.AddWithValue("@email", email);
+
+                                // execute sql query
+                                connection.Open();
+                                command.ExecuteNonQuery();
+                                connection.Close();
+                            }
+                        }
+                        break;
+                    // if reading from concerns
+                    case 6:
+                        log.LogInformation("Processing concerns.");
                         break;
                     // if writing to concerns
                     case 7:
-                        log.LogInformation("Processing concerns.");
+                        using (SqlConnection connection = new SqlConnection(builder.ConnectionString))
+                        {
+                            // sql query for inserting concerns
+                            query = $"INSERT INTO [dbo].[concerns] VALUES (@email, @msg)";
+                            using (SqlCommand command = new SqlCommand(query, connection))
+                            {
+                                // assign parameters from query into variables
+                                string email = req.Query["email"];
+                                string msg = req.Query["msg"];
+
+                                // safely add variable values into the sql query
+                                command.Parameters.AddWithValue("@email", email);
+                                command.Parameters.AddWithValue("@msg", msg);
+
+                                // execute sql query
+                                connection.Open();
+                                command.ExecuteNonQuery();
+                                connection.Close();
+                            }
+                        }
                         break;
                     // if unknown table was given return an error
                     default:
