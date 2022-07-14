@@ -350,8 +350,7 @@ label {
 
 .contact {
   display: inline-flex;
-  margin-inline-start: 30px;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: stretch;
 }
 
