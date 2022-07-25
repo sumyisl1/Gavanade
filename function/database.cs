@@ -84,20 +84,26 @@ namespace gavanade.function
 
                             // query which state to recieve gasprice from database
                             string state = req.Query["state"];
+                            state = state.Replace(" ", "_");
                             string statePr = "";
                             string nationalPr = "";
+                            string prevDate = "";
 
                             // make query to read from sql database
-                            query = $"SELECT [US], [{state}] FROM dbo.pastPrices";
+                            query = $"SELECT [dateUpdated], [US], [{state}] FROM dbo.pastPrices";
                             using (SqlCommand command = new SqlCommand(query, connection))
                             {
+                                log.LogInformation("1");
                                 // execute sql query
                                 SqlDataReader dataReader = command.ExecuteReader();
                                 // read sql query response
                                 dataReader.Read();
-                                statePr += dataReader.GetValue(1);
-                                nationalPr += dataReader.GetValue(0);
+                                log.LogInformation("2");
+                                statePr += dataReader.GetValue(2);
+                                nationalPr += dataReader.GetValue(1);
+                                prevDate += dataReader.GetValue(0);
 
+                                log.LogInformation("3");
                                 // if state or national price ends in a zero, add those trailing zeros
                                 while (statePr.Length < 4)
                                 {
@@ -108,8 +114,14 @@ namespace gavanade.function
                                     nationalPr += "0";
                                 }
 
-                                // set result to {state price}`{national price}
-                                result += statePr + "`" + nationalPr;
+
+                                log.LogInformation("4");
+                                // change prevDate format from "7/24/2022 12:00:01 AM" to "7/24/2022"
+                                prevDate = prevDate.Substring(0, prevDate.IndexOf(" "));
+
+                                // set result to {state price}`{national price}`{prevDate}
+                                result += statePr + "`" + nationalPr + "`" + prevDate;
+                                log.LogInformation("5");
                             }
                             connection.Close();
                         }
