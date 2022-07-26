@@ -77,12 +77,16 @@ a:link, a:visited, a:hover, a:active {
 }
 
 .dropdown-content a:hover {
-  background-color: #ddd;
+  background-color: #4c6c3c;
 }
 
 .dropdown-content a:visited {
  color: #B7E1B0;
 }
+
+.dropdown-content a {
+  color: #B7E1B0;
+ }
 
 .dropdown:hover .dropdown-content {
   display: block;
