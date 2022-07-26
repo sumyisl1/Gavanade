@@ -194,6 +194,10 @@ namespace gavanade.function
                 $"https://gavanade-function-windows.azurewebsites.net/api/database?table=pastPrices&state={state}"
             );
             responseMessage = await databaseResponse.Content.ReadAsStringAsync();
+            if (responseMessage.Length < 1)
+            {
+                responseMessage = "``";
+            }
 
             result = $"{zipcodeStr}`{city}`{state}`{areaPrice}`{statePrice}`{nationalPrice}`{responseMessage}";
             return new OkObjectResult(result);
