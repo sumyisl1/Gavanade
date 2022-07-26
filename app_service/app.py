@@ -85,5 +85,56 @@ def search_coordinates():
     return redirect(url_for("map"))
 
 
+@app.route("/concerns/update", methods=("GET", "POST"))
+def concerns_update():
+    email = request.form["email"]
+    msg = request.form["concerns"]
+
+    error = ""
+    if email == "":
+        error += "Must include an email"
+    if msg == "":
+        error += "; " if error != "" else ""
+        error += "Must include a message"
+
+    if error != "":
+        flash(error)
+        return redirect(url_for("contact"))
+
+    requests.get(
+        f"{function_url}/database?table=concerns&write=write&email={email}&msg={msg}",
+    )
+
+    return redirect(url_for("contact"))
+
+
+@app.route("/contact/update", methods=("GET", "POST"))
+def contact_info_update():
+    first_name = request.form["fname"]
+    last_name = request.form["lname"]
+    email = request.form["email"]
+
+    error = ""
+    if first_name == "":
+        error += "Must include first name"
+    if last_name == "":
+        error += "; " if error != "" else ""
+        error += "Must include last name"
+    if email == "":
+        error += "; " if error != "" else ""
+        error += "Must include an email"
+
+    if error != "":
+        flash(error)
+        return redirect(url_for("contact"))
+
+    requests.get(
+        f"{function_url}/database?table=contactInformation&write=write&firstName={first_name}&lastName={last_name}&email={email}",
+    )
+    print("Processed Contact Info.")
+
+    return redirect(url_for("contact"))
+
+
 if __name__ == "__main__":
     app.run()

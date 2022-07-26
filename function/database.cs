@@ -84,20 +84,26 @@ namespace gavanade.function
 
                             // query which state to recieve gasprice from database
                             string state = req.Query["state"];
+                            state = state.Replace(" ", "_");
                             string statePr = "";
                             string nationalPr = "";
+                            string prevDate = "";
 
                             // make query to read from sql database
-                            query = $"SELECT [US], [{state}] FROM dbo.pastPrices";
+                            query = $"SELECT [dateUpdated], [US], [{state}] FROM dbo.pastPrices";
                             using (SqlCommand command = new SqlCommand(query, connection))
                             {
+                                log.LogInformation("1");
                                 // execute sql query
                                 SqlDataReader dataReader = command.ExecuteReader();
                                 // read sql query response
                                 dataReader.Read();
-                                statePr += dataReader.GetValue(1);
-                                nationalPr += dataReader.GetValue(0);
+                                log.LogInformation("2");
+                                statePr += dataReader.GetValue(2);
+                                nationalPr += dataReader.GetValue(1);
+                                prevDate += dataReader.GetValue(0);
 
+                                log.LogInformation("3");
                                 // if state or national price ends in a zero, add those trailing zeros
                                 while (statePr.Length < 4)
                                 {
@@ -108,8 +114,14 @@ namespace gavanade.function
                                     nationalPr += "0";
                                 }
 
-                                // set result to {state price}`{national price}
-                                result += statePr + "`" + nationalPr;
+
+                                log.LogInformation("4");
+                                // change prevDate format from "7/24/2022 12:00:01 AM" to "7/24/2022"
+                                prevDate = prevDate.Substring(0, prevDate.IndexOf(" "));
+
+                                // set result to {state price}`{national price}`{prevDate}
+                                result += statePr + "`" + nationalPr + "`" + prevDate;
+                                log.LogInformation("5");
                             }
                             connection.Close();
                         }
@@ -196,11 +208,55 @@ namespace gavanade.function
                         break;
                     // if writing to contactInformation
                     case 5:
-                        log.LogInformation("Processing contact information.");
+                        using (SqlConnection connection = new SqlConnection(builder.ConnectionString))
+                        {
+                            // sql query for inserting contact info
+                            query = $"INSERT INTO [dbo].[contactInformation] VALUES (@firstName, @lastName, @email)";
+                            using (SqlCommand command = new SqlCommand(query, connection))
+                            {
+                                // assign parameters from query into variables
+                                string firstName = req.Query["firstName"];
+                                string lastName = req.Query["lastName"];
+                                string email = req.Query["email"];
+
+                                // safely add variable values into the sql query
+                                command.Parameters.AddWithValue("@firstName", firstName);
+                                command.Parameters.AddWithValue("@lastName", lastName);
+                                command.Parameters.AddWithValue("@email", email);
+
+                                // execute sql query
+                                connection.Open();
+                                command.ExecuteNonQuery();
+                                connection.Close();
+                            }
+                        }
+                        break;
+                    // if reading from concerns
+                    case 6:
+                        log.LogInformation("Processing concerns.");
                         break;
                     // if writing to concerns
                     case 7:
-                        log.LogInformation("Processing concerns.");
+                        using (SqlConnection connection = new SqlConnection(builder.ConnectionString))
+                        {
+                            // sql query for inserting concerns
+                            query = $"INSERT INTO [dbo].[concerns] VALUES (@email, @msg)";
+                            using (SqlCommand command = new SqlCommand(query, connection))
+                            {
+                                // assign parameters from query into variables
+                                string email = req.Query["email"];
+                                string msg = req.Query["msg"];
+
+                                // safely add variable values into the sql query
+                                command.Parameters.AddWithValue("@email", email);
+                                command.Parameters.AddWithValue("@msg", msg);
+
+                                // execute sql query
+                                connection.Open();
+                                command.ExecuteNonQuery();
+                                connection.Close();
+                            }
+                        }
                         break;
                     // if unknown table was given return an error
                     default:
