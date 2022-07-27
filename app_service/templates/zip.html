@@ -22,7 +22,12 @@
         {{ msg_split[2] }}) is {{ msg_split[3] }}</li>
       <li>The average gas price for {{ msg_split[2] }} is {{ msg_split[4] }}</li>
       <li>The national average gas price is {{ msg_split[5] }}</li>
+      <br>
+      <li>Prices were last updated on {{ msg_split[8] }}.</li>
+      <li>The previous average for {{ msg_split[2] }} was ${{ msg_split[6] }}.</li>
+      <li>The previous national average was ${{ msg_split[7] }}.</li>
 
+  
       {% else %}
 
       <li>{{ message }}</li>

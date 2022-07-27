@@ -18,9 +18,9 @@ def about():
     return render_template("about.html")
 
 
-@app.route("/placeholder")
-def placeholder():
-    return render_template("placeholder.html")
+@app.route("/alternativefuel")
+def alternativefuel():
+    return render_template("alternativefuel.html")
 
 
 @app.route("/legal")
