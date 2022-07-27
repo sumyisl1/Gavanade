@@ -251,6 +251,7 @@ footer ul li {
  line-height: 30px;
  border-radius: 15px;
  width: 300px;
+ height: 100%;
  }
 
  #zipcode {
@@ -259,6 +260,10 @@ footer ul li {
   width: 60%;
   display: block;
  }
+
+ #zipsearchbutton:hover {
+    background-color:#23321c;
+  }
  
 /*
  * Map page
@@ -341,11 +346,26 @@ label {
   z-index: -9999;
 }
 
-#resultlist {
+.resultlist {
     font-size: 1.3em;
     list-style: none;
     padding-inline-start: 10px;
     font-family: Lato;
+}
+
+.pastprices {
+  font-size: .8em;
+}
+
+#datelastupdated 
+{
+  font-size: .6em;
+  font-style: italic;
+}
+
+#resultflex {
+  display: flex;
+  flex-direction: column;
 }
 
 /*
@@ -438,9 +458,14 @@ input[type="submit"], button[type="submit"] {
   background-color: #38502C;
 }
 
+.aboutcontainer {
+  display: flex;
+  flex-direction: column;
+}
+
 .aboutusbox{
     display: block;
-    height: 300px;
+    padding: 20px;
 }
 
 .abouttext{
